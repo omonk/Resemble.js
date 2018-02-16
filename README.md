@@ -45,6 +45,29 @@ var diff = resemble(file).compareTo(file2).ignoreColors().onComplete(function(da
 });
 ```
 
+## Note on file types
+Comparison between PNG should be created with a reference to files with `fs.readFileSync`:
+
+```javascript
+var fileData1 = fs.readFileSync('image1.jpg');
+var fileData2 = fs.readFileSync('image2.jpg');
+resemble(fileData1).compareTo(fileData2)
+    .onComplete(function(data) {
+	console.log(data);
+    });
+```
+
+Comparison between JPG can use a path as a string:
+
+```javascript
+resemble('path/to/image1.jpg').compareTo('path/to/image2.jpg')
+    .onComplete(function(data) {
+	console.log(data);
+    });
+```
+
+
+
 Scale second image to dimensions of the first one:
 ```javascript
 //diff.useOriginalSize();
